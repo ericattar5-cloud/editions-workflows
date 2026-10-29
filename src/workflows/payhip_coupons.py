@@ -8,10 +8,14 @@ Utilise la cle PAYHIP_API_KAY (workspace secret) pour :
 
 import os
 
-import httpx
 from pydantic import BaseModel
 
 import mistralai.workflows as workflows
+
+# httpx n'est utilise que dans les activities ; il faut le declarer
+# pass-through pour la sandbox des workflows.
+with workflows.workflow.unsafe.imports_passed_through():
+    import httpx  # noqa: F811
 
 PAYHIP_BASE = "https://payhip.com/api/v2"
 

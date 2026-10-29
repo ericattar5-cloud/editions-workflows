@@ -2,11 +2,11 @@
 
 import asyncio
 
-from mistralai_workflows import discover_workflows, run_worker
+from mistralai.workflows import discover_all_workflows_in_package, run_worker
 
 
 async def main() -> None:
-    discovered = discover_workflows()
+    discovered = discover_all_workflows_in_package("workflows")
     await run_worker(discovered)
 
 
